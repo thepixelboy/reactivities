@@ -9,7 +9,7 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200318080416_ActivityEntityAdded")]
+    [Migration("20200318082718_ActivityEntityAdded")]
     partial class ActivityEntityAdded
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -22,6 +22,9 @@ namespace Persistence.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Category")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("City")
