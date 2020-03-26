@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite';
 import { RouteComponentProps } from 'react-router-dom';
 import { LoadingComponent } from '../../../app/layout/LoadingComponent';
 import ActivityDetailedHeader from './ActivityDetailedHeader';
-import { ActivityDetailedInfo } from './ActivityDetailedInfo';
+import ActivityDetailedInfo from './ActivityDetailedInfo';
 import { ActivityDetailedChat } from './ActivityDetailedChat';
 import { ActivityDetailedSidebar } from './ActivityDetailedSidebar';
 
@@ -30,7 +30,7 @@ const ActivityDetails: React.FC<RouteComponentProps<DetailParams>> = ({
     <Grid>
       <Grid.Column width={10}>
         <ActivityDetailedHeader activity={activity} />
-        <ActivityDetailedInfo />
+        <ActivityDetailedInfo activity={activity} />
         <ActivityDetailedChat />
       </Grid.Column>
       <Grid.Column width={6}>
