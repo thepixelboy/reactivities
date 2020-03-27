@@ -8,6 +8,8 @@ import { RouteComponentProps } from 'react-router-dom';
 import { Form as FinalForm, Field } from 'react-final-form';
 import { TextInfo } from '../../../app/common/form/TextInfo';
 import { TextAreaInput } from '../../../app/common/form/TextAreaInput';
+import { SelectInput } from '../../../app/common/form/SelectInput';
+import { category } from '../../../app/common/options/categoryOptions';
 
 interface DetailParams {
   id: string;
@@ -99,7 +101,8 @@ const ActivityForm: React.FC<RouteComponentProps<DetailParams>> = ({
                   name='category'
                   placeholder='Category'
                   value={activity.category}
-                  component={TextInfo}
+                  component={SelectInput}
+                  options={category}
                 />
                 <Field
                   name='date'
