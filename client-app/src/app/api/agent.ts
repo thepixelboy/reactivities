@@ -24,7 +24,7 @@ axios.interceptors.response.use(undefined, error => {
     toast.error('Server error - check the terminal for more info!');
   }
 });
-
+// TODO: Delete "| undefined" and "?"
 const responseBody = (response: AxiosResponse | undefined) => response?.data;
 
 const sleep = (ms: number) => (response: AxiosResponse) =>
