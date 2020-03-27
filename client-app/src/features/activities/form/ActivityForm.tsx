@@ -6,6 +6,7 @@ import ActivityStore from '../../../app/stores/activityStore';
 import { observer } from 'mobx-react-lite';
 import { RouteComponentProps } from 'react-router-dom';
 import { Form as FinalForm, Field } from 'react-final-form';
+import { TextInfo } from '../../../app/common/form/TextInfo';
 
 interface DetailParams {
   id: string;
@@ -91,7 +92,7 @@ const ActivityForm: React.FC<RouteComponentProps<DetailParams>> = ({
                   name='title'
                   placeholder='Title'
                   value={activity.title}
-                  component='input'
+                  component={TextInfo}
                 />
                 <Form.TextArea
                   onChange={handleInputChnage}
