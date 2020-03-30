@@ -1,9 +1,6 @@
-import React, { useState, FormEvent, useContext, useEffect } from 'react';
-import { Segment, Form, Button, Grid, TextArea } from 'semantic-ui-react';
-import {
-  IActivityFormValues,
-  ActivityFormValues
-} from '../../../app/models/activity';
+import React, { useState, useContext, useEffect } from 'react';
+import { Segment, Form, Button, Grid } from 'semantic-ui-react';
+import { ActivityFormValues } from '../../../app/models/activity';
 import { v4 as uuid } from 'uuid';
 import ActivityStore from '../../../app/stores/activityStore';
 import { observer } from 'mobx-react-lite';
@@ -46,27 +43,19 @@ const ActivityForm: React.FC<RouteComponentProps<DetailParams>> = ({
     }
   }, [loadActivity, match.params.id]);
 
-  // const handleSubmit = () => {
-  //   if (activity.id.length === 0) {
-  //     let newActivity = {
-  //       ...activity,
-  //       id: uuid()
-  //     };
-  //     createActivity(newActivity).then(() =>
-  //       history.push(`/activities/${newActivity.id}`)
-  //     );
-  //   } else {
-  //     editActivity(activity).then(() =>
-  //       history.push(`/activities/${activity.id}`)
-  //     );
-  //   }
-  // };
-
   const handleFinalFormSubmit = (values: any) => {
     const dateAndTime = combineDateAndTime(values.date, values.time);
     const { date, time, ...activity } = values;
     activity.date = dateAndTime;
-    console.log(activity);
+    if (!activity.id) {
+      let newActivity = {
+        ...activity,
+        id: uuid()
+      };
+      createActivity(newActivity);
+    } else {
+      editActivity(activity);
+    }
   };
 
   return (
@@ -135,7 +124,11 @@ const ActivityForm: React.FC<RouteComponentProps<DetailParams>> = ({
                   content='Submit'
                 />
                 <Button
-                  onClick={() => history.push('/activities')}
+                  onClick={
+                    activity.id
+                      ? () => history.push(`/activities/${activity.id}`)
+                      : () => history.push('/activities')
+                  }
                   disabled={loading}
                   floated='right'
                   type='button'
