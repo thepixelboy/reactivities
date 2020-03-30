@@ -26,7 +26,7 @@ const ActivityForm: React.FC<RouteComponentProps<DetailParams>> = ({
     createActivity,
     editActivity,
     submitting,
-    activity: initialFormState,
+    activity: initialFmState,
     loadActivity,
     clearActivity
   } = activityStore;
