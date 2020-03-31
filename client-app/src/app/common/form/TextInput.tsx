@@ -6,7 +6,7 @@ interface IProps
   extends FieldRenderProps<string, HTMLElement>,
     FormFieldProps {}
 
-export const TextInfo: React.FC<IProps> = ({
+export const TextInput: React.FC<IProps> = ({
   input,
   width,
   type,

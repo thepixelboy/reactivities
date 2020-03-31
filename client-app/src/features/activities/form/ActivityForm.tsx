@@ -5,7 +5,7 @@ import { v4 as uuid } from 'uuid';
 import { observer } from 'mobx-react-lite';
 import { RouteComponentProps } from 'react-router-dom';
 import { Form as FinalForm, Field } from 'react-final-form';
-import { TextInfo } from '../../../app/common/form/TextInfo';
+import { TextInput } from '../../../app/common/form/TextInput';
 import { TextAreaInput } from '../../../app/common/form/TextAreaInput';
 import { SelectInput } from '../../../app/common/form/SelectInput';
 import { category } from '../../../app/common/options/categoryOptions';
@@ -91,7 +91,7 @@ const ActivityForm: React.FC<RouteComponentProps<DetailParams>> = ({
                   name='title'
                   placeholder='Title'
                   value={activity.title}
-                  component={TextInfo}
+                  component={TextInput}
                 />
                 <Field
                   name='description'
@@ -127,13 +127,13 @@ const ActivityForm: React.FC<RouteComponentProps<DetailParams>> = ({
                   name='city'
                   placeholder='City'
                   value={activity.city}
-                  component={TextInfo}
+                  component={TextInput}
                 />
                 <Field
                   name='venue'
                   placeholder='Venue'
                   value={activity.venue}
-                  component={TextInfo}
+                  component={TextInput}
                 />
                 <Button
                   loading={submitting}
