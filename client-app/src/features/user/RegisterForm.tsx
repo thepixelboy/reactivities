@@ -24,7 +24,7 @@ export const RegisterForm = () => {
       onSubmit={(values: IUserFormValues) =>
         register(values).catch(error => ({ [FORM_ERROR]: error }))
       }
-      // validate={validate}
+      validate={validate}
       render={({
         handleSubmit,
         submitting,
@@ -54,10 +54,7 @@ export const RegisterForm = () => {
             type='password'
           />
           {submitError && !dirtySinceLastSubmit && (
-            <ErrorMessage
-              error={submitError}
-              text={JSON.stringify(submitError.data.errors)}
-            />
+            <ErrorMessage error={submitError} />
           )}
           <Button
             disabled={(invalid && !dirtySinceLastSubmit) || pristine}
