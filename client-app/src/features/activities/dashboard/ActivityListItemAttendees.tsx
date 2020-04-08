@@ -9,8 +9,8 @@ interface IProps {
 export const ActivityListItemAttendees: React.FC<IProps> = ({ attendees }) => {
   return (
     <List horizontal>
-      {attendees.map(attendee => (
-        <List.Item key={attendee.displayName}>
+      {attendees.map((attendee) => (
+        <List.Item key={attendee.username}>
           <Popup
             header={attendee.displayName}
             trigger={

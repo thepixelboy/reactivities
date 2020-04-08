@@ -6,9 +6,9 @@ import { format } from 'date-fns';
 import { ActivityListItemAttendees } from './ActivityListItemAttendees';
 
 export const ActivityListItem: React.FC<{ activity: IActivity }> = ({
-  activity
+  activity,
 }) => {
-  const host = activity.attendees.filter(x => x.isHost)[0];
+  const host = activity.attendees.filter((x) => x.isHost)[0];
   return (
     <Segment.Group>
       <Segment>
