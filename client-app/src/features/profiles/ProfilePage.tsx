@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { Grid } from 'semantic-ui-react';
 import ProfileHeader from './ProfileHeader';
-import { ProfileContent } from './ProfileContent';
+import ProfileContent from './ProfileContent';
 import { RootStoreContext } from '../../app/stores/rootStore';
 import { RouteComponentProps } from 'react-router-dom';
 import { LoadingComponent } from '../../app/layout/LoadingComponent';
@@ -23,6 +23,7 @@ const ProfilePage: React.FC<IProps> = ({ match }) => {
     unfollow,
     isCurrentUser,
     loading,
+    setActiveTab,
   } = rootStore.profileStore;
 
   useEffect(() => {
@@ -41,7 +42,7 @@ const ProfilePage: React.FC<IProps> = ({ match }) => {
           follow={follow}
           unfollow={unfollow}
         />
-        <ProfileContent />
+        <ProfileContent setActiveTab={setActiveTab} />
       </Grid.Column>
     </Grid>
   );
