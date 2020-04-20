@@ -78,7 +78,7 @@ export default class ActivityStore {
 
   @action createHubConnection = (activityId: string) => {
     this.hubConnection = new HubConnectionBuilder()
-      .withUrl('http://localhost:5000/chat', {
+      .withUrl(process.env.REACT_APP_API_CHAT_URL!, {
         accessTokenFactory: () => this.rootStore.commonStore.token!,
       })
       .configureLogging(LogLevel.Information)
@@ -100,9 +100,7 @@ export default class ActivityStore {
       });
     });
 
-    this.hubConnection.on('Send', (message) => {
-      toast.info(message);
-    });
+    this.hubConnection.on('Send', (message) => {});
   };
 
   @action stopHubConnection = () => {
