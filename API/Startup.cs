@@ -128,7 +128,10 @@ namespace API
         // app.UseDeveloperExceptionPage();
       }
 
-      //app.UseHttpsRedirection();      
+      //app.UseHttpsRedirection();
+
+      app.UseDefaultFiles();
+      app.UseStaticFiles();
 
       app.UseRouting();
       app.UseCors("CorsPolicy");
@@ -136,12 +139,11 @@ namespace API
       app.UseAuthentication();
       app.UseAuthorization();
 
-
-
       app.UseEndpoints(endpoints =>
       {
         endpoints.MapControllers();
         endpoints.MapHub<ChatHub>("/chat");
+        endpoints.MapFallbackToController("Index", "Fallback");
       });
     }
   }

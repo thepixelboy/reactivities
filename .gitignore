@@ -437,3 +437,4 @@ bin
 obj
 appsettings.json
 *.db
+wwwroot
