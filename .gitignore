@@ -404,3 +404,8 @@ FodyWeavers.xsd
 
 # Ignode DS_Store files
 **/.DS_Store
+
+# Ignore SQLite Database files
+*.db
+*.db-shm
+*.db-wal
