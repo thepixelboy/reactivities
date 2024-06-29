@@ -410,5 +410,5 @@ FodyWeavers.xsd
 *.db-shm
 *.db-wal
 
-# Ignore appsettings.json file
-appsettings.json
+# Ignore appsettings.json file in all projects
+**/appsettings.json
