@@ -8,6 +8,7 @@ import LoadingComponent from "../../../app/layout/LoadingComponent";
 import { v4 as uuid } from "uuid";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import MyTextInput from "../../../app/common/form/MyTextInput";
 
 export default observer(function ActivityForm() {
   const { activityStore } = useStore();
@@ -76,41 +77,11 @@ export default observer(function ActivityForm() {
       >
         {({ handleSubmit }) => (
           <Form className="ui form" onSubmit={handleSubmit} autoComplete="off">
-            <FormField>
-              <Field placeholder="Title" name="title" />
-              <ErrorMessage
-                name="title"
-                render={(error) => <Label basic color="red" content={error} />}
-              />
-            </FormField>
-            <FormField>
-              <Field placeholder="Description" name="description" />
-              <ErrorMessage
-                name="description"
-                render={(error) => <Label basic color="red" content={error} />}
-              />
-            </FormField>
-            <FormField>
-              <Field placeholder="Category" name="category" />
-              <ErrorMessage
-                name="category"
-                render={(error) => <Label basic color="red" content={error} />}
-              />
-            </FormField>
-            <FormField>
-              <Field placeholder="Date" name="date" type="date" />
-              <ErrorMessage
-                name="date"
-                render={(error) => <Label basic color="red" content={error} />}
-              />
-            </FormField>
-            <FormField>
-              <Field placeholder="City" name="city" />
-              <ErrorMessage
-                name="city"
-                render={(error) => <Label basic color="red" content={error} />}
-              />
-            </FormField>
+            <MyTextInput placeholder="Title" name="title" />
+            <MyTextInput placeholder="Description" name="description" />
+            <MyTextInput placeholder="Category" name="category" />
+            <MyTextInput placeholder="Date" name="date" />
+            <MyTextInput placeholder="City" name="city" />
             <Button
               loading={loading}
               floated="right"
