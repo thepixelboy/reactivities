@@ -12,6 +12,8 @@ export default function MyDateInput(props: Partial<DatePickerProps>) {
         {...props}
         selected={(field.value && new Date(field.value)) || null}
         onChange={(value) => helpers.setValue(value)}
+        selectsRange={undefined}
+        selectsMultiple={undefined}
       />
       {meta.touched && meta.error ? (
         <Label basic color="red" content={meta.error} />
