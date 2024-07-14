@@ -1,4 +1,4 @@
-import { Button, Segment } from "semantic-ui-react";
+import { Button, FormField, Label, Segment } from "semantic-ui-react";
 import { ChangeEvent, useEffect, useState } from "react";
 import { useStore } from "../../../app/stores/store";
 import { observer } from "mobx-react-lite";
@@ -6,7 +6,8 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { Activity } from "../../../app/models/activity";
 import LoadingComponent from "../../../app/layout/LoadingComponent";
 import { v4 as uuid } from "uuid";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
 export default observer(function ActivityForm() {
   const { activityStore } = useStore();
@@ -28,6 +29,15 @@ export default observer(function ActivityForm() {
     date: "",
     city: "",
     venue: "",
+  });
+
+  const validationSchema = Yup.object({
+    title: Yup.string().required("The activity title is required"),
+    description: Yup.string().required("The activity description is required"),
+    category: Yup.string().required(),
+    date: Yup.string().required("Date is required").nullable(),
+    venue: Yup.string().required(),
+    city: Yup.string().required(),
   });
 
   useEffect(() => {
@@ -59,18 +69,48 @@ export default observer(function ActivityForm() {
   return (
     <Segment clearing>
       <Formik
+        validationSchema={validationSchema}
         enableReinitialize
         initialValues={activity}
         onSubmit={(values) => console.log(values)}
       >
         {({ handleSubmit }) => (
           <Form className="ui form" onSubmit={handleSubmit} autoComplete="off">
-            <Field placeholder="Title" name="title" />
-            <Field placeholder="Description" name="description" />
-            <Field placeholder="Category" name="category" />
-            <Field placeholder="Date" name="date" type="date" />
-            <Field placeholder="City" name="city" />
-            <Field placeholder="Venue" name="venue" />
+            <FormField>
+              <Field placeholder="Title" name="title" />
+              <ErrorMessage
+                name="title"
+                render={(error) => <Label basic color="red" content={error} />}
+              />
+            </FormField>
+            <FormField>
+              <Field placeholder="Description" name="description" />
+              <ErrorMessage
+                name="description"
+                render={(error) => <Label basic color="red" content={error} />}
+              />
+            </FormField>
+            <FormField>
+              <Field placeholder="Category" name="category" />
+              <ErrorMessage
+                name="category"
+                render={(error) => <Label basic color="red" content={error} />}
+              />
+            </FormField>
+            <FormField>
+              <Field placeholder="Date" name="date" type="date" />
+              <ErrorMessage
+                name="date"
+                render={(error) => <Label basic color="red" content={error} />}
+              />
+            </FormField>
+            <FormField>
+              <Field placeholder="City" name="city" />
+              <ErrorMessage
+                name="city"
+                render={(error) => <Label basic color="red" content={error} />}
+              />
+            </FormField>
             <Button
               loading={loading}
               floated="right"
