@@ -43,5 +43,41 @@ namespace API.Controllers
 
             return Unauthorized();
         }
+
+        [HttpPost("register")]
+        public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
+        {
+            if (await _userManager.FindByEmailAsync(registerDto.Email) != null)
+            {
+                return BadRequest("Email taken");
+            }
+
+            if (await _userManager.FindByNameAsync(registerDto.Username) != null)
+            {
+                return BadRequest("Username taken");
+            }
+
+            var user = new AppUser
+            {
+                DisplayName = registerDto.DisplayName,
+                Email = registerDto.Email,
+                UserName = registerDto.Username,
+            };
+
+            var result = await _userManager.CreateAsync(user, registerDto.Password);
+
+            if (result.Succeeded)
+            {
+                return new UserDto
+                {
+                    DisplayName = user.DisplayName,
+                    Image = null,
+                    Token = _tokenService.CreateToken(user),
+                    Username = user.UserName,
+                };
+            }
+
+            return BadRequest(result.Errors);
+        }
     }
 }
